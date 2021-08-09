@@ -305,7 +305,7 @@ var app = (function () {
     	let t19;
     	let output3;
     	let t20;
-    	let t21_value = /*USDollar*/ ctx[7].format(/*totalPayments*/ ctx[3]) + "";
+    	let t21_value = /*USDollar*/ ctx[7].format(/*totalPaid*/ ctx[3]) + "";
     	let t21;
     	let t22;
     	let output4;
@@ -390,10 +390,10 @@ var app = (function () {
     			attr(div3, "class", "columns seven");
     			attr(output1, "class", "columns five svelte-1ob7sxf");
     			attr(div4, "class", "row");
-    			attr(form, "class", "container");
     			attr(output2, "class", "row svelte-1ob7sxf");
     			attr(output3, "class", "row svelte-1ob7sxf");
     			attr(output4, "class", "row svelte-1ob7sxf");
+    			attr(form, "class", "container");
     		},
     		m(target, anchor) {
     			insert(target, main, anchor);
@@ -427,16 +427,16 @@ var app = (function () {
     			append(div4, output1);
     			append(output1, t14);
     			append(output1, t15);
-    			append(main, t16);
-    			append(main, output2);
+    			append(form, t16);
+    			append(form, output2);
     			append(output2, t17);
     			append(output2, t18);
-    			append(main, t19);
-    			append(main, output3);
+    			append(form, t19);
+    			append(form, output3);
     			append(output3, t20);
     			append(output3, t21);
-    			append(main, t22);
-    			append(main, output4);
+    			append(form, t22);
+    			append(form, output4);
     			append(output4, t23);
     			append(output4, t24);
 
@@ -470,7 +470,7 @@ var app = (function () {
 
     			if (dirty & /*interestRate*/ 32 && t14_value !== (t14_value = /*interestRate*/ ctx[5].toFixed(2) + "")) set_data(t14, t14_value);
     			if (dirty & /*monthlyPayment*/ 16 && t18_value !== (t18_value = /*USDollar*/ ctx[7].format(/*monthlyPayment*/ ctx[4]) + "")) set_data(t18, t18_value);
-    			if (dirty & /*totalPayments*/ 8 && t21_value !== (t21_value = /*USDollar*/ ctx[7].format(/*totalPayments*/ ctx[3]) + "")) set_data(t21, t21_value);
+    			if (dirty & /*totalPaid*/ 8 && t21_value !== (t21_value = /*USDollar*/ ctx[7].format(/*totalPaid*/ ctx[3]) + "")) set_data(t21, t21_value);
     			if (dirty & /*interestPaid*/ 64 && t24_value !== (t24_value = /*USDollar*/ ctx[7].format(/*interestPaid*/ ctx[6]) + "")) set_data(t24, t24_value);
     		},
     		i: noop,
@@ -516,22 +516,22 @@ var app = (function () {
     		}
 
     		if ($$self.$$.dirty & /*years*/ 2) {
-    			$$invalidate(3, totalPayments = years * 12);
+    			$$invalidate(8, totalPayments = years * 12);
     		}
 
     		if ($$self.$$.dirty & /*interestRate*/ 32) {
     			$$invalidate(9, monthlyInterestRate = interestRate / 100 / 12);
     		}
 
-    		if ($$self.$$.dirty & /*amount, monthlyInterestRate, totalPayments*/ 521) {
+    		if ($$self.$$.dirty & /*amount, monthlyInterestRate, totalPayments*/ 769) {
     			$$invalidate(4, monthlyPayment = amount * Math.pow(1 + monthlyInterestRate, totalPayments) * monthlyInterestRate / (Math.pow(1 + monthlyInterestRate, totalPayments) - 1));
     		}
 
-    		if ($$self.$$.dirty & /*monthlyPayment, totalPayments*/ 24) {
-    			$$invalidate(8, totalPaid = monthlyPayment * totalPayments);
+    		if ($$self.$$.dirty & /*monthlyPayment, totalPayments*/ 272) {
+    			$$invalidate(3, totalPaid = monthlyPayment * totalPayments);
     		}
 
-    		if ($$self.$$.dirty & /*totalPaid, amount*/ 257) {
+    		if ($$self.$$.dirty & /*totalPaid, amount*/ 9) {
     			$$invalidate(6, interestPaid = totalPaid - amount);
     		}
     	};
@@ -540,12 +540,12 @@ var app = (function () {
     		amount,
     		years,
     		interest,
-    		totalPayments,
+    		totalPaid,
     		monthlyPayment,
     		interestRate,
     		interestPaid,
     		USDollar,
-    		totalPaid,
+    		totalPayments,
     		monthlyInterestRate,
     		input0_input_handler,
     		input1_change_input_handler,

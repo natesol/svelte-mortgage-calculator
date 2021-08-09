@@ -284,7 +284,7 @@ var app = (function () {
     	let t7;
     	let output0;
     	let t8;
-    	let t9_value = (/*years*/ ctx[0] === 1 ? ' year' : ' years') + "";
+    	let t9_value = (/*years*/ ctx[1] === 1 ? ' year' : ' years') + "";
     	let t9;
     	let t10;
     	let div4;
@@ -294,7 +294,7 @@ var app = (function () {
     	let input2;
     	let t13;
     	let output1;
-    	let t14_value = /*interestRate*/ ctx[4].toFixed(2) + "";
+    	let t14_value = /*interestRate*/ ctx[5].toFixed(2) + "";
     	let t14;
     	let t15;
     	let t16;
@@ -333,7 +333,7 @@ var app = (function () {
     			input1 = element("input");
     			t7 = space();
     			output0 = element("output");
-    			t8 = text(/*years*/ ctx[0]);
+    			t8 = text(/*years*/ ctx[1]);
     			t9 = text(t9_value);
     			t10 = space();
     			div4 = element("div");
@@ -349,11 +349,11 @@ var app = (function () {
     			t16 = space();
     			output2 = element("output");
     			t17 = text("Monthly Payment: ");
-    			t18 = text(/*monthlyPayment*/ ctx[3]);
+    			t18 = text(/*monthlyPayment*/ ctx[4]);
     			t19 = space();
     			output3 = element("output");
     			t20 = text("Total Payment: ");
-    			t21 = text(/*totalPayments*/ ctx[2]);
+    			t21 = text(/*totalPayments*/ ctx[3]);
     			t22 = space();
     			output4 = element("output");
     			t23 = text("Interest Paid: ");
@@ -401,14 +401,14 @@ var app = (function () {
     			append(div0, label0);
     			append(div0, t3);
     			append(div0, input0);
-    			set_input_value(input0, /*amount*/ ctx[5]);
+    			set_input_value(input0, /*amount*/ ctx[0]);
     			append(form, t4);
     			append(form, div2);
     			append(div2, div1);
     			append(div1, label1);
     			append(div1, t6);
     			append(div1, input1);
-    			set_input_value(input1, /*years*/ ctx[0]);
+    			set_input_value(input1, /*years*/ ctx[1]);
     			append(div2, t7);
     			append(div2, output0);
     			append(output0, t8);
@@ -419,7 +419,7 @@ var app = (function () {
     			append(div3, label2);
     			append(div3, t12);
     			append(div3, input2);
-    			set_input_value(input2, /*interest*/ ctx[1]);
+    			set_input_value(input2, /*interest*/ ctx[2]);
     			append(div4, t13);
     			append(div4, output1);
     			append(output1, t14);
@@ -450,24 +450,24 @@ var app = (function () {
     			}
     		},
     		p(ctx, [dirty]) {
-    			if (dirty & /*amount*/ 32 && to_number(input0.value) !== /*amount*/ ctx[5]) {
-    				set_input_value(input0, /*amount*/ ctx[5]);
+    			if (dirty & /*amount*/ 1 && to_number(input0.value) !== /*amount*/ ctx[0]) {
+    				set_input_value(input0, /*amount*/ ctx[0]);
     			}
 
-    			if (dirty & /*years*/ 1) {
-    				set_input_value(input1, /*years*/ ctx[0]);
+    			if (dirty & /*years*/ 2) {
+    				set_input_value(input1, /*years*/ ctx[1]);
     			}
 
-    			if (dirty & /*years*/ 1) set_data(t8, /*years*/ ctx[0]);
-    			if (dirty & /*years*/ 1 && t9_value !== (t9_value = (/*years*/ ctx[0] === 1 ? ' year' : ' years') + "")) set_data(t9, t9_value);
+    			if (dirty & /*years*/ 2) set_data(t8, /*years*/ ctx[1]);
+    			if (dirty & /*years*/ 2 && t9_value !== (t9_value = (/*years*/ ctx[1] === 1 ? ' year' : ' years') + "")) set_data(t9, t9_value);
 
-    			if (dirty & /*interest*/ 2) {
-    				set_input_value(input2, /*interest*/ ctx[1]);
+    			if (dirty & /*interest*/ 4) {
+    				set_input_value(input2, /*interest*/ ctx[2]);
     			}
 
-    			if (dirty & /*interestRate*/ 16 && t14_value !== (t14_value = /*interestRate*/ ctx[4].toFixed(2) + "")) set_data(t14, t14_value);
-    			if (dirty & /*monthlyPayment*/ 8) set_data(t18, /*monthlyPayment*/ ctx[3]);
-    			if (dirty & /*totalPayments*/ 4) set_data(t21, /*totalPayments*/ ctx[2]);
+    			if (dirty & /*interestRate*/ 32 && t14_value !== (t14_value = /*interestRate*/ ctx[5].toFixed(2) + "")) set_data(t14, t14_value);
+    			if (dirty & /*monthlyPayment*/ 16) set_data(t18, /*monthlyPayment*/ ctx[4]);
+    			if (dirty & /*totalPayments*/ 8) set_data(t21, /*totalPayments*/ ctx[3]);
     			if (dirty & /*interestPaid*/ 64) set_data(t24, /*interestPaid*/ ctx[6]);
     		},
     		i: noop,
@@ -493,52 +493,52 @@ var app = (function () {
 
     	function input0_input_handler() {
     		amount = to_number(this.value);
-    		$$invalidate(5, amount);
+    		$$invalidate(0, amount);
     	}
 
     	function input1_change_input_handler() {
     		years = to_number(this.value);
-    		$$invalidate(0, years);
+    		$$invalidate(1, years);
     	}
 
     	function input2_change_input_handler() {
     		interest = to_number(this.value);
-    		$$invalidate(1, interest);
+    		$$invalidate(2, interest);
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*interest*/ 2) {
-    			$$invalidate(4, interestRate = interest / 20);
+    		if ($$self.$$.dirty & /*interest*/ 4) {
+    			$$invalidate(5, interestRate = interest / 20);
     		}
 
-    		if ($$self.$$.dirty & /*years*/ 1) {
-    			$$invalidate(2, totalPayments = years * 12);
+    		if ($$self.$$.dirty & /*years*/ 2) {
+    			$$invalidate(3, totalPayments = years * 12);
     		}
 
-    		if ($$self.$$.dirty & /*interestRate*/ 16) {
+    		if ($$self.$$.dirty & /*interestRate*/ 32) {
     			$$invalidate(8, monthlyInterestRate = interestRate / 100 / 12);
     		}
 
-    		if ($$self.$$.dirty & /*monthlyInterestRate, totalPayments*/ 260) {
-    			$$invalidate(3, monthlyPayment = loanAmount * Math.pow(1 + monthlyInterestRate, totalPayments) * monthlyInterestRate / (Math.pow(1 + monthlyInterestRate, totalPayments) - 1));
+    		if ($$self.$$.dirty & /*amount, monthlyInterestRate, totalPayments*/ 265) {
+    			$$invalidate(4, monthlyPayment = amount * Math.pow(1 + monthlyInterestRate, totalPayments) * monthlyInterestRate / (Math.pow(1 + monthlyInterestRate, totalPayments) - 1));
     		}
 
-    		if ($$self.$$.dirty & /*monthlyPayment, totalPayments*/ 12) {
+    		if ($$self.$$.dirty & /*monthlyPayment, totalPayments*/ 24) {
     			$$invalidate(7, totalPaid = monthlyPayment * totalPayments);
     		}
 
-    		if ($$self.$$.dirty & /*totalPaid*/ 128) {
-    			$$invalidate(6, interestPaid = totalPaid - loanAmount);
+    		if ($$self.$$.dirty & /*totalPaid, amount*/ 129) {
+    			$$invalidate(6, interestPaid = totalPaid - amount);
     		}
     	};
 
     	return [
+    		amount,
     		years,
     		interest,
     		totalPayments,
     		monthlyPayment,
     		interestRate,
-    		amount,
     		interestPaid,
     		totalPaid,
     		monthlyInterestRate,

@@ -300,17 +300,17 @@ var app = (function () {
     	let t16;
     	let output2;
     	let t17;
-    	let t18_value = /*dollarHandler*/ ctx[7].format(/*monthlyPayment*/ ctx[4]) + "";
+    	let t18_value = /*USDollar*/ ctx[7].format(/*monthlyPayment*/ ctx[4]) + "";
     	let t18;
     	let t19;
     	let output3;
     	let t20;
-    	let t21_value = /*dollarHandler*/ ctx[7].format(/*totalPayments*/ ctx[3]) + "";
+    	let t21_value = /*USDollar*/ ctx[7].format(/*totalPayments*/ ctx[3]) + "";
     	let t21;
     	let t22;
     	let output4;
     	let t23;
-    	let t24_value = /*dollarHandler*/ ctx[7].format(/*interestPaid*/ ctx[6]) + "";
+    	let t24_value = /*USDollar*/ ctx[7].format(/*interestPaid*/ ctx[6]) + "";
     	let t24;
     	let mounted;
     	let dispose;
@@ -469,9 +469,9 @@ var app = (function () {
     			}
 
     			if (dirty & /*interestRate*/ 32 && t14_value !== (t14_value = /*interestRate*/ ctx[5].toFixed(2) + "")) set_data(t14, t14_value);
-    			if (dirty & /*monthlyPayment*/ 16 && t18_value !== (t18_value = /*dollarHandler*/ ctx[7].format(/*monthlyPayment*/ ctx[4]) + "")) set_data(t18, t18_value);
-    			if (dirty & /*totalPayments*/ 8 && t21_value !== (t21_value = /*dollarHandler*/ ctx[7].format(/*totalPayments*/ ctx[3]) + "")) set_data(t21, t21_value);
-    			if (dirty & /*interestPaid*/ 64 && t24_value !== (t24_value = /*dollarHandler*/ ctx[7].format(/*interestPaid*/ ctx[6]) + "")) set_data(t24, t24_value);
+    			if (dirty & /*monthlyPayment*/ 16 && t18_value !== (t18_value = /*USDollar*/ ctx[7].format(/*monthlyPayment*/ ctx[4]) + "")) set_data(t18, t18_value);
+    			if (dirty & /*totalPayments*/ 8 && t21_value !== (t21_value = /*USDollar*/ ctx[7].format(/*totalPayments*/ ctx[3]) + "")) set_data(t21, t21_value);
+    			if (dirty & /*interestPaid*/ 64 && t24_value !== (t24_value = /*USDollar*/ ctx[7].format(/*interestPaid*/ ctx[6]) + "")) set_data(t24, t24_value);
     		},
     		i: noop,
     		o: noop,
@@ -490,7 +490,7 @@ var app = (function () {
     	let monthlyPayment;
     	let totalPaid;
     	let interestPaid;
-    	const dollarHandler = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+    	const USDollar = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
     	let amount = 200_000;
     	let years = 15;
     	let interest = 300;
@@ -544,7 +544,7 @@ var app = (function () {
     		monthlyPayment,
     		interestRate,
     		interestPaid,
-    		dollarHandler,
+    		USDollar,
     		totalPaid,
     		monthlyInterestRate,
     		input0_input_handler,

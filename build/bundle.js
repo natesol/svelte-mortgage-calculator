@@ -305,12 +305,12 @@ var app = (function () {
     	let t19;
     	let output3;
     	let t20;
-    	let t21_value = /*USDollar*/ ctx[7].format(/*totalPaid*/ ctx[3]) + "";
+    	let t21_value = /*USDollar*/ ctx[7].format(/*interestPaid*/ ctx[6]) + "";
     	let t21;
     	let t22;
     	let output4;
     	let t23;
-    	let t24_value = /*USDollar*/ ctx[7].format(/*interestPaid*/ ctx[6]) + "";
+    	let t24_value = /*USDollar*/ ctx[7].format(/*totalPaid*/ ctx[3]) + "";
     	let t24;
     	let mounted;
     	let dispose;
@@ -355,11 +355,11 @@ var app = (function () {
     			t18 = text(t18_value);
     			t19 = space();
     			output3 = element("output");
-    			t20 = text("Total Payment: ");
+    			t20 = text("Interest Paid: ");
     			t21 = text(t21_value);
     			t22 = space();
     			output4 = element("output");
-    			t23 = text("Interest Paid: ");
+    			t23 = text("Total Payment: ");
     			t24 = text(t24_value);
     			attr(legend, "class", "row");
     			attr(label0, "for", "amount");
@@ -470,8 +470,8 @@ var app = (function () {
 
     			if (dirty & /*interestRate*/ 32 && t14_value !== (t14_value = /*interestRate*/ ctx[5].toFixed(2) + "")) set_data(t14, t14_value);
     			if (dirty & /*monthlyPayment*/ 16 && t18_value !== (t18_value = /*USDollar*/ ctx[7].format(/*monthlyPayment*/ ctx[4]) + "")) set_data(t18, t18_value);
-    			if (dirty & /*totalPaid*/ 8 && t21_value !== (t21_value = /*USDollar*/ ctx[7].format(/*totalPaid*/ ctx[3]) + "")) set_data(t21, t21_value);
-    			if (dirty & /*interestPaid*/ 64 && t24_value !== (t24_value = /*USDollar*/ ctx[7].format(/*interestPaid*/ ctx[6]) + "")) set_data(t24, t24_value);
+    			if (dirty & /*interestPaid*/ 64 && t21_value !== (t21_value = /*USDollar*/ ctx[7].format(/*interestPaid*/ ctx[6]) + "")) set_data(t21, t21_value);
+    			if (dirty & /*totalPaid*/ 8 && t24_value !== (t24_value = /*USDollar*/ ctx[7].format(/*totalPaid*/ ctx[3]) + "")) set_data(t24, t24_value);
     		},
     		i: noop,
     		o: noop,

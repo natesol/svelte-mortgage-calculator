@@ -300,14 +300,17 @@ var app = (function () {
     	let t16;
     	let output2;
     	let t17;
+    	let t18_value = /*dollarHandler*/ ctx[7].format(/*monthlyPayment*/ ctx[4]) + "";
     	let t18;
     	let t19;
     	let output3;
     	let t20;
+    	let t21_value = /*dollarHandler*/ ctx[7].format(/*totalPayments*/ ctx[3]) + "";
     	let t21;
     	let t22;
     	let output4;
     	let t23;
+    	let t24_value = /*dollarHandler*/ ctx[7].format(/*interestPaid*/ ctx[6]) + "";
     	let t24;
     	let mounted;
     	let dispose;
@@ -349,15 +352,15 @@ var app = (function () {
     			t16 = space();
     			output2 = element("output");
     			t17 = text("Monthly Payment: ");
-    			t18 = text(/*monthlyPayment*/ ctx[4]);
+    			t18 = text(t18_value);
     			t19 = space();
     			output3 = element("output");
     			t20 = text("Total Payment: ");
-    			t21 = text(/*totalPayments*/ ctx[3]);
+    			t21 = text(t21_value);
     			t22 = space();
     			output4 = element("output");
     			t23 = text("Interest Paid: ");
-    			t24 = text(/*interestPaid*/ ctx[6]);
+    			t24 = text(t24_value);
     			attr(legend, "class", "row");
     			attr(label0, "for", "amount");
     			attr(input0, "name", "amount");
@@ -439,11 +442,11 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen(input0, "input", /*input0_input_handler*/ ctx[9]),
-    					listen(input1, "change", /*input1_change_input_handler*/ ctx[10]),
-    					listen(input1, "input", /*input1_change_input_handler*/ ctx[10]),
-    					listen(input2, "change", /*input2_change_input_handler*/ ctx[11]),
-    					listen(input2, "input", /*input2_change_input_handler*/ ctx[11])
+    					listen(input0, "input", /*input0_input_handler*/ ctx[10]),
+    					listen(input1, "change", /*input1_change_input_handler*/ ctx[11]),
+    					listen(input1, "input", /*input1_change_input_handler*/ ctx[11]),
+    					listen(input2, "change", /*input2_change_input_handler*/ ctx[12]),
+    					listen(input2, "input", /*input2_change_input_handler*/ ctx[12])
     				];
 
     				mounted = true;
@@ -466,9 +469,9 @@ var app = (function () {
     			}
 
     			if (dirty & /*interestRate*/ 32 && t14_value !== (t14_value = /*interestRate*/ ctx[5].toFixed(2) + "")) set_data(t14, t14_value);
-    			if (dirty & /*monthlyPayment*/ 16) set_data(t18, /*monthlyPayment*/ ctx[4]);
-    			if (dirty & /*totalPayments*/ 8) set_data(t21, /*totalPayments*/ ctx[3]);
-    			if (dirty & /*interestPaid*/ 64) set_data(t24, /*interestPaid*/ ctx[6]);
+    			if (dirty & /*monthlyPayment*/ 16 && t18_value !== (t18_value = /*dollarHandler*/ ctx[7].format(/*monthlyPayment*/ ctx[4]) + "")) set_data(t18, t18_value);
+    			if (dirty & /*totalPayments*/ 8 && t21_value !== (t21_value = /*dollarHandler*/ ctx[7].format(/*totalPayments*/ ctx[3]) + "")) set_data(t21, t21_value);
+    			if (dirty & /*interestPaid*/ 64 && t24_value !== (t24_value = /*dollarHandler*/ ctx[7].format(/*interestPaid*/ ctx[6]) + "")) set_data(t24, t24_value);
     		},
     		i: noop,
     		o: noop,
@@ -487,6 +490,7 @@ var app = (function () {
     	let monthlyPayment;
     	let totalPaid;
     	let interestPaid;
+    	const dollarHandler = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
     	let amount = 200_000;
     	let years = 15;
     	let interest = 300;
@@ -516,18 +520,18 @@ var app = (function () {
     		}
 
     		if ($$self.$$.dirty & /*interestRate*/ 32) {
-    			$$invalidate(8, monthlyInterestRate = interestRate / 100 / 12);
+    			$$invalidate(9, monthlyInterestRate = interestRate / 100 / 12);
     		}
 
-    		if ($$self.$$.dirty & /*amount, monthlyInterestRate, totalPayments*/ 265) {
+    		if ($$self.$$.dirty & /*amount, monthlyInterestRate, totalPayments*/ 521) {
     			$$invalidate(4, monthlyPayment = amount * Math.pow(1 + monthlyInterestRate, totalPayments) * monthlyInterestRate / (Math.pow(1 + monthlyInterestRate, totalPayments) - 1));
     		}
 
     		if ($$self.$$.dirty & /*monthlyPayment, totalPayments*/ 24) {
-    			$$invalidate(7, totalPaid = monthlyPayment * totalPayments);
+    			$$invalidate(8, totalPaid = monthlyPayment * totalPayments);
     		}
 
-    		if ($$self.$$.dirty & /*totalPaid, amount*/ 129) {
+    		if ($$self.$$.dirty & /*totalPaid, amount*/ 257) {
     			$$invalidate(6, interestPaid = totalPaid - amount);
     		}
     	};
@@ -540,6 +544,7 @@ var app = (function () {
     		monthlyPayment,
     		interestRate,
     		interestPaid,
+    		dollarHandler,
     		totalPaid,
     		monthlyInterestRate,
     		input0_input_handler,

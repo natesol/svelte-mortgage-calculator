@@ -1,5 +1,5 @@
 <script>
-    const formatterDollar = new Intl.NumberFormat('en-US', {
+    const dollarHandler = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
     });
@@ -70,9 +70,9 @@
         </div>
     </form>
 
-    <output class="row">Monthly Payment: {monthlyPayment}</output>
-    <output class="row">Total Payment: {totalPayments}</output>
-    <output class="row">Interest Paid: {interestPaid}</output>
+    <output class="row">Monthly Payment: {dollarHandler.format(monthlyPayment)}</output>
+    <output class="row">Total Payment: {dollarHandler.format(totalPayments)}</output>
+    <output class="row">Interest Paid: {dollarHandler.format(interestPaid)}</output>
 </main>
 
 

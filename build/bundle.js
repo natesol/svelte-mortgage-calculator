@@ -298,6 +298,7 @@ var app = (function () {
     	let t14;
     	let t15;
     	let t16;
+    	let div5;
     	let output2;
     	let t17;
     	let t18_value = /*USDollar*/ ctx[7].format(/*monthlyPayment*/ ctx[4]) + "";
@@ -350,6 +351,7 @@ var app = (function () {
     			t14 = text(t14_value);
     			t15 = text("%");
     			t16 = space();
+    			div5 = element("div");
     			output2 = element("output");
     			t17 = text("Monthly Payment: ");
     			t18 = text(t18_value);
@@ -428,15 +430,16 @@ var app = (function () {
     			append(output1, t14);
     			append(output1, t15);
     			append(form, t16);
-    			append(form, output2);
+    			append(form, div5);
+    			append(div5, output2);
     			append(output2, t17);
     			append(output2, t18);
-    			append(form, t19);
-    			append(form, output3);
+    			append(div5, t19);
+    			append(div5, output3);
     			append(output3, t20);
     			append(output3, t21);
-    			append(form, t22);
-    			append(form, output4);
+    			append(div5, t22);
+    			append(div5, output4);
     			append(output4, t23);
     			append(output4, t24);
 

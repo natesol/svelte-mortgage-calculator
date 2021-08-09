@@ -1,5 +1,5 @@
 <script>
-    const dollarHandler = new Intl.NumberFormat('en-US', {
+    const USDollar = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
     });
@@ -68,11 +68,12 @@
             </div>
             <output class="columns five">{interestRate.toFixed(2)}%</output>
         </div>
-    </form>
 
-    <output class="row">Monthly Payment: {dollarHandler.format(monthlyPayment)}</output>
-    <output class="row">Total Payment: {dollarHandler.format(totalPayments)}</output>
-    <output class="row">Interest Paid: {dollarHandler.format(interestPaid)}</output>
+        <output class="row">Monthly Payment: {USDollar.format(monthlyPayment)}</output>
+        <output class="row">Total Payment: {USDollar.format(totalPaid)}</output>
+        <output class="row">Interest Paid: {USDollar.format(interestPaid)}</output>
+
+    </form>
 </main>
 
 

@@ -1,6 +1,3 @@
-<!-- ------------------------------------------------------------------------------------------------------------- -->
-<!-- ------------------------------------------------------------------------------------------------------------- -->
-
 <script>
     const formatterDollar = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -15,17 +12,14 @@
     $: totalPayments = years * 12;
     $: monthlyInterestRate = interestRate / 100 / 12;
     $: monthlyPayment =
-        (loanAmount * Math.pow(1 + monthlyInterestRate, totalPayments) * monthlyInterestRate) /
+        (amount * Math.pow(1 + monthlyInterestRate, totalPayments) * monthlyInterestRate) /
         (Math.pow(1 + monthlyInterestRate, totalPayments) - 1)
     ;
     $: totalPaid = monthlyPayment * totalPayments;
-    $: interestPaid = totalPaid - loanAmount;
+    $: interestPaid = totalPaid - amount;
     
 </script>
 
-
-<!-- ------------------------------------------------------------------------------------------------------------- -->
-<!-- ------------------------------------------------------------------------------------------------------------- -->
 
 <main>
     <form class="container">
@@ -82,8 +76,6 @@
 </main>
 
 
-<!-- ------------------------------------------------------------------------------------------------------------- -->
-<!-- ------------------------------------------------------------------------------------------------------------- -->
 
 <style>
     h1 {

@@ -70,8 +70,8 @@ export default {
         // If we're building for production (npm run build
         // instead of npm run dev), minify
         production && terser() && ghPages.publish('public', (err) => {
-            if ( !err ) console.log('published to gitHub successfully.');
-            else        console.error('published to gitHub with the following error:', err);
+            if ( !err ) console.log('published to gitHub successfully.\n');
+            else        console.error('published to gitHub with the following error:', err, '\n');
         })
     ],
     watch: {
